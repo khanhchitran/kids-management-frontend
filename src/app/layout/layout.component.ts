@@ -56,7 +56,10 @@ export class LayoutComponent implements OnDestroy {
 
   navigateToPage(page: string) {
     this.router.navigate([page]);
-    this.sideNav.toggle();
+
+    if (this.smallDevice) {
+      this.sideNav.toggle();
+    }
   }
 
   ngOnDestroy() {
