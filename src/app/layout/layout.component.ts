@@ -16,7 +16,6 @@ export class LayoutComponent implements OnDestroy {
   smallDevice!: boolean;
   currentScreenSize!: string;
 
-  // Create a map to display breakpoint names for demonstration purposes.
   displayNameMap = new Map([
     [Breakpoints.XSmall, 'XSmall'],
     [Breakpoints.Small, 'Small'],
@@ -36,18 +35,16 @@ export class LayoutComponent implements OnDestroy {
       ])
       .pipe(takeUntil(this.destroyed))
       .subscribe((result) => {
-        console.log({ result });
         for (const query of Object.keys(result.breakpoints)) {
           if (result.breakpoints[query]) {
             this.currentScreenSize =
               this.displayNameMap.get(query) ?? 'Unknown';
 
-            console.log({
-              currentScreenSize: this.currentScreenSize,
-
-              abc: result.breakpoints[query],
-              query,
-            });
+            this.smallDevice =
+              this.currentScreenSize ===
+                this.displayNameMap.get(Breakpoints.XSmall) ||
+              this.currentScreenSize ===
+                this.displayNameMap.get(Breakpoints.Small);
           }
         }
       });
