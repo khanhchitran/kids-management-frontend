@@ -1,13 +1,15 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, ViewChild } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { CoreModule } from '../core/core.module';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
+import { Router, RouterModule } from '@angular/router';
+import { MatSidenav } from '@angular/material/sidenav';
 
 @Component({
   selector: 'app-layout',
   standalone: true,
-  imports: [CoreModule],
+  imports: [CoreModule, RouterModule],
   templateUrl: './layout.component.html',
   styleUrl: './layout.component.scss',
 })
@@ -24,7 +26,7 @@ export class LayoutComponent implements OnDestroy {
     [Breakpoints.XLarge, 'XLarge'],
   ]);
 
-  constructor(breakpointObserver: BreakpointObserver) {
+  constructor(breakpointObserver: BreakpointObserver, private router: Router) {
     breakpointObserver
       .observe([
         Breakpoints.XSmall,
@@ -48,6 +50,13 @@ export class LayoutComponent implements OnDestroy {
           }
         }
       });
+  }
+
+  @ViewChild('sidenav') sideNav!: MatSidenav;
+
+  navigateToPage(page: string) {
+    this.router.navigate([page]);
+    this.sideNav.toggle();
   }
 
   ngOnDestroy() {
