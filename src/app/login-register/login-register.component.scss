@@ -1,0 +1,17 @@
+/* login-register.component.css */
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 90px)
+}
+
+.form {
+    width: 300px;
+    margin: auto;
+}
+
+.full-width {
+    width: 100%;
+}

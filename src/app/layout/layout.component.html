@@ -13,6 +13,7 @@
     <div *ngIf="!smallDevice" fxHide.lt-md="true">
       <a mat-button (click)="navigateToPage('about')">About us</a>
       <a mat-button (click)="navigateToPage('price')">Prices</a>
+      <a mat-button (click)="navigateToPage('account')">Account</a>
     </div>
   </mat-toolbar>
   <mat-sidenav-container [style.top]="90" class="example-container">
@@ -26,6 +27,7 @@
       <div>
         <a mat-button (click)="navigateToPage('about')">About us</a>
         <a mat-button (click)="navigateToPage('price')">Prices</a>
+        <a mat-button (click)="navigateToPage('account')">Account</a>
       </div>
     </mat-sidenav>
     <mat-sidenav-content fxFlexFill class="awesome-content">
